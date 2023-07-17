@@ -83,3 +83,6 @@ C:\Users\omars\Desktop\ReactUI-WebAPI-CSharp-Project\App Backend\WebApi\WebApi\b
 C:\Users\omars\Desktop\ReactUI-WebAPI-CSharp-Project\App Backend\WebApi\WebApi\obj\Debug\WebApi.csproj.CopyComplete
 C:\Users\omars\Desktop\ReactUI-WebAPI-CSharp-Project\App Backend\WebApi\WebApi\obj\Debug\WebApi.dll
 C:\Users\omars\Desktop\ReactUI-WebAPI-CSharp-Project\App Backend\WebApi\WebApi\obj\Debug\WebApi.pdb
+C:\Users\omars\Desktop\ReactUI-WebAPI-CSharp-Project\App Backend\WebApi\WebApi\bin\System.Web.Cors.dll
+C:\Users\omars\Desktop\ReactUI-WebAPI-CSharp-Project\App Backend\WebApi\WebApi\bin\System.Web.Http.Cors.dll
+C:\Users\omars\Desktop\ReactUI-WebAPI-CSharp-Project\App Backend\WebApi\WebApi\bin\System.Web.Http.Cors.xml

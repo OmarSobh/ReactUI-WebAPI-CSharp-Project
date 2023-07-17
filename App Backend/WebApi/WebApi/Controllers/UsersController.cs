@@ -10,12 +10,12 @@ namespace WebApi.Controllers
 {
     public class UsersController : ApiController
     {
-        public IHttpActionResult Get()
+        
+        public IHttpActionResult GetAllUsers()
         {
             try
             {
-                UserRole ur = UserRole.ADMIN;
-                User[] users = UsersBLL.GetALLUsersFromDB(ur);
+                User[] users = UsersBLL.GetALLUsersFromDB(UserRole.ADMIN);
                 return Ok(users);
             }
             catch (Exception e)
@@ -24,7 +24,8 @@ namespace WebApi.Controllers
             }
         }
 
-        public IHttpActionResult Get(int id)
+        [HttpGet]
+        public IHttpActionResult GetUser(int id)
         {
             try
             {
@@ -40,7 +41,8 @@ namespace WebApi.Controllers
             }
         }
 
-        public IHttpActionResult Post([FromBody] User user)
+        [HttpPost]
+        public IHttpActionResult CreateUser(User user)
         {
             try
             {
@@ -53,7 +55,8 @@ namespace WebApi.Controllers
             }
         }
 
-        public IHttpActionResult Put(int id, [FromBody] User user)
+        [HttpPut]
+        public IHttpActionResult UpdateUser(int id, User user)
         {
             try
             {
@@ -66,7 +69,8 @@ namespace WebApi.Controllers
             }
         }
 
-        public IHttpActionResult Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult DeleteUser(int id)
         {
             try
             {
