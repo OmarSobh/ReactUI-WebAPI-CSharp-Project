@@ -35,7 +35,7 @@ namespace WebApi.Models
                         Id = (int)reader["ID"],
                         Name = (string)reader["Name"],
                         Family = (string)reader["Family"],
-                        Email = (string)reader["E-mail"],
+                        Email = (string)reader["Email"],
                         Password = (string)reader["Password"]
                     });
                 }
@@ -68,7 +68,7 @@ namespace WebApi.Models
                         Id = (int)reader["ID"],
                         Name = (string)reader["Name"],
                         Family = (string)reader["Family"],
-                        Email = (string)reader["E-mail"],
+                        Email = (string)reader["Email"],
                         Password = (string)reader["Password"]
                     };
 
@@ -85,7 +85,7 @@ namespace WebApi.Models
             using (SqlConnection con = new SqlConnection(conStr))
             {
                 using (SqlCommand cmd = new SqlCommand(
-                    "INSERT INTO TBUsers (Name, Family, [E-mail], [Password]) " +
+                    "INSERT INTO TBUsers (Name, Family, [Email], [Password]) " +
                     "VALUES (@Name, @Family, @Email, @Password)", con))
                 {
                     cmd.Parameters.AddWithValue("@Name", user.Name);
@@ -105,7 +105,7 @@ namespace WebApi.Models
             {
                 using (SqlCommand cmd = new SqlCommand(
                     "UPDATE TBUsers " +
-                    "SET Name = @Name, Family = @Family, [E-mail] = @Email, [Password] = @Password " +
+                    "SET Name = @Name, Family = @Family, [Email] = @Email, [Password] = @Password " +
                     "WHERE ID = @ID", con))
                 {
                     cmd.Parameters.AddWithValue("@Name", user.Name);
