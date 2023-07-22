@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
+using System.Windows;
 
 namespace WebApi.Models
 {
@@ -135,5 +137,41 @@ namespace WebApi.Models
                 }
             }
         }
+        public static User LoginUser(string email, string password)
+        {
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                con.Open();
+                return GetUserByEmailAndPasswordQuery(email, password, con);
+            }
+        }
+
+        private static User GetUserByEmailAndPasswordQuery(string email, string password, SqlConnection con)
+        {
+            using (SqlCommand cmd = new SqlCommand("SELECT * FROM TBUsers WHERE Email = @Email AND [Password] = @Password", con))
+            {
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Password", password);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    User user = new User()
+                    {
+                        Id = (int)reader["ID"],
+                        Name = (string)reader["Name"],
+                        Family = (string)reader["Family"],
+                        Email = (string)reader["Email"],
+                        Password = (string)reader["Password"]
+                    };
+
+                    reader.Close();
+                    return user;
+                }
+            }
+
+            return null;
+        }
+
     }
 }

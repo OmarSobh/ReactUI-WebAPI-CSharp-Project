@@ -43,5 +43,10 @@ namespace WebApi.Models
         {
             UserDBService.DeleteUser(id);
         }
+
+         public static User Login(string email, string password)
+        {
+            return UserDBService.LoginUser(email, password);
+        }
     }
 }

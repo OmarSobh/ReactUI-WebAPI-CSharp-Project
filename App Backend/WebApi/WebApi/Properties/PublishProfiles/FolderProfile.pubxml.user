@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\omars\Desktop\New folder (3)</_PublishTargetUrl>
-    <History>True|2023-07-18T12:55:06.9924887Z;True|2023-07-18T15:45:01.9292777+03:00;True|2023-07-17T20:54:28.5746984+03:00;</History>
+    <History>True|2023-07-22T20:05:42.3286882Z;True|2023-07-20T23:09:58.7727728+03:00;True|2023-07-18T15:55:06.9924887+03:00;True|2023-07-18T15:45:01.9292777+03:00;True|2023-07-17T20:54:28.5746984+03:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -271,10 +271,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/28/2022 00:42:50</publishTime>
     </File>
     <File Include="bin/WebApi.dll">
-      <publishTime>07/18/2023 15:55:06</publishTime>
+      <publishTime>07/22/2023 23:05:41</publishTime>
     </File>
     <File Include="bin/WebApi.pdb">
-      <publishTime>07/18/2023 15:55:06</publishTime>
+      <publishTime>07/22/2023 23:05:41</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>

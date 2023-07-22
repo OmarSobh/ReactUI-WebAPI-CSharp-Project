@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WebApi.Models;
+using WebApi.Models.LoginData;
 
 namespace WebApi.Controllers
 {
@@ -76,6 +77,23 @@ namespace WebApi.Controllers
             {
                 UsersBLL.DeleteUser(id);
                 return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [Route("api/users/login")] // Add a route to specify the login endpoint
+        public IHttpActionResult LoginUser(LoginData loginModel)
+        {
+            try
+            {
+                User user = UsersBLL.Login(loginModel.Email, loginModel.Password);
+                if (user != null)
+                    return Ok(user);
+                else
+                    return NotFound();
             }
             catch (Exception e)
             {

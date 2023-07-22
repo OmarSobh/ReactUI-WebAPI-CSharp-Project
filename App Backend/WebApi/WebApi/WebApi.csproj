@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -168,6 +169,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginData\LoginData.cs" />
     <Compile Include="Models\Tasks\TodoTask.cs" />
     <Compile Include="Models\Tasks\TasksBLL.cs" />
     <Compile Include="Models\Tasks\TaskDBService.cs" />
