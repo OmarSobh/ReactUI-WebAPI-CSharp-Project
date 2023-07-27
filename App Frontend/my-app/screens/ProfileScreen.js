@@ -1,4 +1,3 @@
-// ProfileScreen.js
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
@@ -6,22 +5,27 @@ const ProfileScreen = ({ route, navigation }) => {
   const { user } = route.params;
 
   const handleViewTasks = () => {
-    navigation.navigate('Tasks', { user });
+    navigation.navigate('Tasks', { user }); // Ensure this line is correctly navigating to TaskScreen
   };
+
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Profile Information</Text>
       <Text style={styles.label}>Name: </Text>
-      <Text style={styles.value}>{user.Name}</Text>
+      <Text style={styles.value}>{user?.Name}</Text>
 
       <Text style={styles.label}>Family: </Text>
-      <Text style={styles.value}>{user.Family}</Text>
+      <Text style={styles.value}>{user?.Family}</Text>
 
       <Text style={styles.label}>Email: </Text>
-      <Text style={styles.value}>{user.Email}</Text>
+      <Text style={styles.value}>{user?.Email}</Text>
 
-      <Button title="View Tasks" onPress={handleViewTasks} />
+      <Button
+        title="View Tasks"
+        onPress={handleViewTasks}
+      />
+
     </View>
   );
 };
