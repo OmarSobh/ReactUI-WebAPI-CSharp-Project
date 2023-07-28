@@ -7,13 +7,18 @@ import LoginScreen from './screens/LoginScreen';
 import TasksScreen from './screens/TasksScreen';
 import TaskDetailsScreen from './screens/TaskDetailsScreen ';
 import CreateTaskScreen from './screens/CreateTaskScreen ';
+import LunchScreen from './screens/LunchScreen'; // Import the LunchScreen
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Lunch" screenOptions={({ route }) => ({
+        headerShown: false,
+        gestureEnabled: route.name === 'Lunch' ? false : true,
+      })}>
+        <Stack.Screen name="Lunch" component={LunchScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Alert, Image } from 'react-native';
 import { Text } from 'react-native-paper';
+
+const logoImage = require('../assets/app-logo.png'); // Update the image path accordingly
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -45,6 +47,10 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      {/* Display the logo at the top */}
+      <Image source={logoImage} style={styles.logo} resizeMode="contain" />
+      <Text style={styles.welcomeText}>Hi, Welcome Back! 👋</Text>
+
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -81,6 +87,19 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     marginBottom: 10,
     padding: 10,
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    marginBottom: 30, // Adjust the margin based on your layout
+  },
+  linkText: {
+    marginTop: 10,
+    color: 'blue',
+  },welcomeText: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    marginBottom: 10,
   },
 });
 
