@@ -4,15 +4,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ProfileScreen from './screens/ProfileScreen';
 import SignUpScreen from './screens/SignupScreen';
 import LoginScreen from './screens/LoginScreen';
-import TasksScreen from './screens/TasksScreen';
+import LunchScreen from './screens/LunchScreen';
+import TaskScreen from './screens/TasksScreen';
 import TaskDetailsScreen from './screens/TaskDetailsScreen ';
 import CreateTaskScreen from './screens/CreateTaskScreen ';
-import LunchScreen from './screens/LunchScreen'; // Import the LunchScreen
+import LunchScreenLoggedIn from './screens/LunchScreenLoggedIn';
+import { NativeBaseProvider } from 'native-base';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
+    <NativeBaseProvider>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Lunch" screenOptions={({ route }) => ({
         headerShown: false,
@@ -22,11 +25,14 @@ const App = () => {
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Tasks" component={TasksScreen} />
+        <Stack.Screen name="Tasks" component={TaskScreen} />
         <Stack.Screen name="TaskDetails" component={TaskDetailsScreen} /> 
         <Stack.Screen name="CreateTask" component={CreateTaskScreen} />
+        <Stack.Screen name="LunchLoggedIn" component={LunchScreenLoggedIn} /> 
+
       </Stack.Navigator>
     </NavigationContainer>
+    </NativeBaseProvider>
   );
 };
 

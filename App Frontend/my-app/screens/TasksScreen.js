@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Button } from 'react-native-paper';
 
 const TaskScreen = ({ route, navigation }) => {
@@ -57,27 +57,29 @@ const TaskScreen = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Task Screen</Text>
-      {tasks.map((task) => (
-        <TouchableOpacity
-          key={task.ID}
-          style={styles.taskItem}
-          onPress={() => navigation.navigate('TaskDetails', { task })}
-        >
-          <View style={styles.taskDetails}>
-            <Text style={styles.taskTitle}>{task.Title}</Text>
-            <Text style={styles.taskDescription}>{task.Description}</Text>
-          </View>
-          {/* Delete Button */}
-          <Button
-            mode="outlined"
-            onPress={() => handleDeleteTask(task.ID)}
-            style={styles.deleteButton}
-            labelStyle={styles.deleteButtonLabel}
+      <ScrollView>
+        {tasks.map((task) => (
+          <TouchableOpacity
+            key={task.ID}
+            style={styles.taskItem}
+            onPress={() => navigation.navigate('TaskDetails', { task })}
           >
-            Delete
-          </Button>
-        </TouchableOpacity>
-      ))}
+            <View style={styles.taskDetails}>
+              <Text style={styles.taskTitle}>{task.Title}</Text>
+              <Text style={styles.taskDescription}>{task.Description}</Text>
+            </View>
+            {/* Delete Button */}
+            <Button
+              mode="outlined"
+              onPress={() => handleDeleteTask(task.ID)}
+              style={styles.deleteButton}
+              labelStyle={styles.deleteButtonLabel}
+            >
+              Delete
+            </Button>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
       {/* Navigate to ProfileScreen */}
       <Button
         mode="contained"
@@ -87,7 +89,6 @@ const TaskScreen = ({ route, navigation }) => {
       >
         Go to Profile
       </Button>
-
       {/* Navigate to CreateTaskScreen */}
       <Button
         mode="contained"
@@ -106,6 +107,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#f0f0f0',
+    marginTop:35,
+    marginBottom:20,
   },
   title: {
     fontSize: 20,

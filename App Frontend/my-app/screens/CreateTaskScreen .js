@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Button } from 'react-native-paper';
 
 const CreateTaskScreen = ({ navigation, route }) => {
-      const [title, setTitle] = useState('');
-      const [description, setDescription] = useState('');
-    
-      // Access the user object from route.params.user
-      const { user } = route.params;
+  // State to store the task title and description
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
 
+  // Access the user object from route.params.user
+  const { user } = route.params;
 
+  // Function to handle saving the new task
   const handleSaveTask = () => {
     const newTask = {
       Title: title,
@@ -30,7 +31,9 @@ const CreateTaskScreen = ({ navigation, route }) => {
         if (response.ok) {
           // Task created successfully, navigate back to the TaskScreen
           navigation.navigate('Tasks', { user: user });
-      } else {
+        } else {
+          // Handle error response (if possible)
+          console.error('Error Response:', response);
           throw new Error('Failed to create task.');
         }
       })

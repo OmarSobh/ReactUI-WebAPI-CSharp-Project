@@ -33,7 +33,8 @@ const LoginScreen = ({ navigation }) => {
       .then((data) => {
         if (data) {
           // Login successful, navigate to the tasks screen with the user data
-          navigation.navigate('Tasks', { user: data });
+          navigation.navigate('LunchLoggedIn', { user: data });
+          // navigation.navigate('Tasks', { user: data });
         } else {
           // Login failed, display an error message
           Alert.alert('Login Failed', 'Invalid email or password. Please try again.');
@@ -48,7 +49,9 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Display the logo at the top */}
+      <Text style={styles.welcomeText}>Login Screen</Text>
       <Image source={logoImage} style={styles.logo} resizeMode="contain" />
+
       <Text style={styles.welcomeText}>Hi, Welcome Back! 👋</Text>
 
       <TextInput
@@ -98,7 +101,7 @@ const styles = StyleSheet.create({
     color: 'blue',
   },welcomeText: {
     fontWeight: 'bold',
-    fontSize: 24,
+    fontSize: 20,
     marginBottom: 10,
   },
 });
