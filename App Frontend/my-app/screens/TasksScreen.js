@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Button } from 'react-native-paper';
+import CustomHeader from '../Components/CustomHeader ';
 
 const TaskScreen = ({ route, navigation }) => {
   const { user } = route.params;
@@ -56,6 +57,8 @@ const TaskScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+      <CustomHeader navigation={navigation} route={user}></CustomHeader>
+
       <Text style={styles.title}>Task Screen</Text>
       <ScrollView>
         {tasks.map((task) => (
@@ -105,10 +108,10 @@ const TaskScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 0,
     backgroundColor: '#f0f0f0',
-    marginTop:35,
-    marginBottom:20,
+    marginTop: 0,
+    marginBottom: 20,
   },
   title: {
     fontSize: 20,

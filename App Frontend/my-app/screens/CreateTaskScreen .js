@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Button } from 'react-native-paper';
+import CustomHeader from '../Components/CustomHeader ';
 
 const CreateTaskScreen = ({ navigation, route }) => {
   // State to store the task title and description
@@ -45,6 +46,8 @@ const CreateTaskScreen = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
+            <CustomHeader navigation={navigation} route={user}></CustomHeader>
+
       <Text style={styles.title}>Create New Task</Text>
       <TextInput
         style={styles.input}
@@ -69,8 +72,10 @@ const CreateTaskScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 0,
     backgroundColor: '#f0f0f0',
+    marginTop:0,
+    marginBottom:20,
   },
   title: {
     fontSize: 24,

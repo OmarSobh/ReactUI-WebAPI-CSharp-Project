@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { Button } from 'react-native-paper';
+import CustomHeader from '../Components/CustomHeader ';
 
 const TaskDetailsScreen = ({ route, navigation }) => {
   const { task } = route.params;
@@ -82,6 +83,8 @@ const TaskDetailsScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+      <CustomHeader navigation={navigation} route={route}></CustomHeader>
+
       <View style={styles.taskCard}>
         <Text style={styles.title}>{task.Title}</Text>
         <Text style={styles.description}>{task.Description}</Text>
@@ -118,7 +121,7 @@ const TaskDetailsScreen = ({ route, navigation }) => {
       {isEditMode && (
         <View style={styles.buttonContainer}>
           <Button mode="contained" onPress={handleSaveChanges} labelStyle={styles.buttonLabel}>
-            Save Changes  
+            Save Changes
           </Button>
           <Button mode="outlined" onPress={handleDeleteTask} labelStyle={styles.deleteButtonLabel}>
             Delete Task
@@ -132,7 +135,7 @@ const TaskDetailsScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 0,
     backgroundColor: '#f0f0f0',
   },
   taskCard: {

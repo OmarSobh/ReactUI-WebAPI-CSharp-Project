@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
+import CustomHeader from '../Components/CustomHeader ';
 
 const ProfileScreen = ({ route, navigation }) => {
   const { user } = route.params;
@@ -11,6 +12,7 @@ const ProfileScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+      <CustomHeader navigation={navigation} route={user}></CustomHeader>
       <Text style={styles.title}>Profile Information</Text>
       <Text style={styles.label}>Name: </Text>
       <Text style={styles.value}>{user?.Name}</Text>
@@ -33,8 +35,11 @@ const ProfileScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 0,
     backgroundColor: '#f0f0f0',
+        marginTop:0,
+    marginBottom:20,
+    
   },
   title: {
     fontSize: 20,
