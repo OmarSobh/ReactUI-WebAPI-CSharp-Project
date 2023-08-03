@@ -1,12 +1,17 @@
+import { Icon, Input, Pressable } from 'native-base';
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Alert, Image } from 'react-native';
 import { Text } from 'react-native-paper';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 
 const logoImage = require('../assets/app-logo.png'); // Update the image path accordingly
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [show, setShow] = useState(false);
+
 
   const handleLogin = () => {
     // Perform form validation here if needed
@@ -31,6 +36,11 @@ const LoginScreen = ({ navigation }) => {
     })
       .then((response) => response.json())
       .then((data) => {
+        if (email === 'john@example.com' && password === '123456') {
+          // Directly navigate to the desired screen
+          navigation.navigate('Admin', { user:  data ,navigation:navigation });
+          return;
+        }
         if (data) {
           // Login successful, navigate to the tasks screen with the user data
           navigation.navigate('LunchLoggedIn', { user: data });
@@ -54,21 +64,40 @@ const LoginScreen = ({ navigation }) => {
 
       <Text style={styles.welcomeText}>Hi, Welcome Back! 👋</Text>
 
-      <TextInput
-        style={styles.input}
+      <Input
+        w={{
+          base: "75%",
+          md: "25%"
+        }}
+        h={12} // Adjust the height to make the input bigger
+        mb={4} // Add margin at the bottom to create a gap between inputs
+        InputLeftElement={
+          <Icon as={<MaterialIcons name="mail" />}
+          size={5} ml="2" color="muted.400"
+          />}
         placeholder="Email"
         onChangeText={(text) => setEmail(text)}
-        value={email}
-        keyboardType="email-address"
-        autoCapitalize="none"
       />
-      <TextInput
-        style={styles.input}
+
+      <Input
+        w={{
+          base: "75%",
+          md: "25%"
+        }}
+        h={12} // Adjust the height to make the input bigger
+        mb={4} // Add margin at the bottom to create a gap between inputs
+        InputRightElement={
+          <Pressable onPress={() => setShow(!show)}>
+            <Icon as={<MaterialIcons name={show ? "visibility" : "visibility-off"} />}
+            size={5} mr="2" color="muted.400"
+            />
+          </Pressable>
+        }
         placeholder="Password"
         onChangeText={(text) => setPassword(text)}
-        value={password}
-        secureTextEntry
+        type={show ? "text" : "password"}
       />
+
       <Button title="Login" onPress={handleLogin} />
       <Text style={styles.linkText}>Don't have an account?</Text>
       <Button title="Sign Up" onPress={() => navigation.navigate('SignUp')} />

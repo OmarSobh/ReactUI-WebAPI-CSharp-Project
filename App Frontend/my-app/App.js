@@ -11,6 +11,8 @@ import CreateTaskScreen from './screens/CreateTaskScreen ';
 import LunchScreenLoggedIn from './screens/LunchScreenLoggedIn';
 import { NativeBaseProvider } from 'native-base';
 import { PaperProvider } from 'react-native-paper';
+import UserDetails from './screens/UserDetails';
+import Admin from './screens/Admin';
 
 const Stack = createStackNavigator();
 
@@ -31,6 +33,9 @@ const App = () => {
             <Stack.Screen name="TaskDetails" component={TaskDetailsScreen} />
             <Stack.Screen name="CreateTask" component={CreateTaskScreen} />
             <Stack.Screen name="LunchLoggedIn" component={LunchScreenLoggedIn} />
+            <Stack.Screen name="Admin" component={Admin} />
+            <Stack.Screen name="UserDetails" component={UserDetails} />
+
 
           </Stack.Navigator>
         </NavigationContainer>
