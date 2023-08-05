@@ -1,9 +1,7 @@
-import { Icon, Input, Pressable } from 'native-base';
+import { Icon, Input, Pressable, Button as NativeBaseButton, Text } from 'native-base';
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Alert, Image } from 'react-native';
-import { Text } from 'react-native-paper';
+import { View, StyleSheet, Alert, Image } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
 
 const logoImage = require('../assets/app-logo.png'); // Update the image path accordingly
 
@@ -11,7 +9,6 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [show, setShow] = useState(false);
-
 
   const handleLogin = () => {
     // Perform form validation here if needed
@@ -38,7 +35,7 @@ const LoginScreen = ({ navigation }) => {
       .then((data) => {
         if (email === 'john@example.com' && password === '123456') {
           // Directly navigate to the desired screen
-          navigation.navigate('Admin', { user:  data ,navigation:navigation });
+          navigation.navigate('Admin', { user: data, navigation: navigation });
           return;
         }
         if (data) {
@@ -58,7 +55,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* Display the logo at the top */}
+     
       <Text style={styles.welcomeText}>Login Screen</Text>
       <Image source={logoImage} style={styles.logo} resizeMode="contain" />
 
@@ -66,41 +63,54 @@ const LoginScreen = ({ navigation }) => {
 
       <Input
         w={{
-          base: "75%",
-          md: "25%"
+          base: '75%',
+          md: '25%',
         }}
-        h={12} // Adjust the height to make the input bigger
-        mb={4} // Add margin at the bottom to create a gap between inputs
+        h={12}
+        mb={4}
         InputLeftElement={
-          <Icon as={<MaterialIcons name="mail" />}
-          size={5} ml="2" color="muted.400"
-          />}
+          <Icon as={<MaterialIcons name="mail" />} size={5} ml="2" color="muted.400" />
+        }
         placeholder="Email"
         onChangeText={(text) => setEmail(text)}
       />
 
       <Input
         w={{
-          base: "75%",
-          md: "25%"
+          base: '75%',
+          md: '25%',
         }}
-        h={12} // Adjust the height to make the input bigger
-        mb={4} // Add margin at the bottom to create a gap between inputs
+        h={12}
+        mb={4}
         InputRightElement={
           <Pressable onPress={() => setShow(!show)}>
-            <Icon as={<MaterialIcons name={show ? "visibility" : "visibility-off"} />}
-            size={5} mr="2" color="muted.400"
+            <Icon
+              as={<MaterialIcons name={show ? 'visibility' : 'visibility-off'} />}
+              size={5}
+              mr="2"
+              color="muted.400"
             />
           </Pressable>
         }
         placeholder="Password"
         onChangeText={(text) => setPassword(text)}
-        type={show ? "text" : "password"}
+        type={show ? 'text' : 'password'}
       />
 
-      <Button title="Login" onPress={handleLogin} />
+      {/* Login Button */}
+      <NativeBaseButton style={styles.loginButton} onPress={handleLogin}>
+        Login
+      </NativeBaseButton>
+
       <Text style={styles.linkText}>Don't have an account?</Text>
-      <Button title="Sign Up" onPress={() => navigation.navigate('SignUp')} />
+
+      {/* Sign Up Button */}
+      <NativeBaseButton
+        style={styles.signUpButton}
+        onPress={() => navigation.navigate('SignUp')}
+      >
+        Sign Up
+      </NativeBaseButton>
     </View>
   );
 };
@@ -112,26 +122,36 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  input: {
-    width: '100%',
-    height: 40,
-    borderWidth: 1,
-    borderColor: 'gray',
-    marginBottom: 10,
-    padding: 10,
-  },
   logo: {
     width: 200,
     height: 200,
-    marginBottom: 30, // Adjust the margin based on your layout
+    marginBottom: 30,
+  },
+  welcomeText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: 10,
+  },
+  loginButton: {
+    width: '75%',
+    height: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'blue', // Customize the button color
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  signUpButton: {
+    width: '75%',
+    height: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'green', // Customize the button color
+    borderRadius: 8,
   },
   linkText: {
     marginTop: 10,
     color: 'blue',
-  },welcomeText: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    marginBottom: 10,
   },
 });
 

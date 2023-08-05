@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { Button } from 'react-native-paper';
 import CustomHeader from '../Components/CustomHeader ';
 
@@ -37,23 +37,40 @@ const Admin = ({ route, navigation }) => {
   };
 
   const handleDeleteuser = (userId) => {
-    // Perform API call to delete the user
-    fetch(`https://omarsobh.bsite.net/api/users/${userId}`, {
-      method: 'DELETE',
-    })
-      .then((response) => {
-        if (response.ok) {
-          // Refresh the user list after successful deletion
-          fetchusers();
-        } else {
-          throw new Error('Failed to delete user.');
-        }
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        // Handle error if necessary, e.g., show an error message to the user
-      });
-  };
+      // Show a confirmation alert before deleting the user
+      Alert.alert(
+        'Delete User',
+        'Are you sure you want to delete this user?',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+          {
+            text: 'Delete',
+            onPress: () => {
+              // Perform API call to delete the user
+              fetch(`https://omarsobh.bsite.net/api/users/${userId}`, {
+                method: 'DELETE',
+              })
+                .then((response) => {
+                  if (response.ok) {
+                    // Refresh the user list after successful deletion
+                    fetchusers();
+                  } else {
+                    throw new Error('Failed to delete user.');
+                  }
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                  // Handle error if necessary, e.g., show an error message to the user
+                });
+            },
+          },
+        ],
+        { cancelable: false }
+      );
+    };
 
   const handleUserDetails = (user) => {
     // Navigate to the User Details Screen with the selected user data
@@ -90,24 +107,7 @@ const Admin = ({ route, navigation }) => {
           </TouchableOpacity>
         ))}
       </ScrollView>
-      {/* Navigate to ProfileScreen */}
-      <Button
-        mode="contained"
-        onPress={() => navigation.navigate('Profile', { user: user })}
-        style={styles.button}
-        labelStyle={styles.buttonLabel}
-      >
-        Go to Profile
-      </Button>
-      {/* Navigate to Createuserscreen */}
-      <Button
-        mode="contained"
-        onPress={() => navigation.navigate('Createuser', { user })}
-        style={styles.button}
-        labelStyle={styles.buttonLabel}
-      >
-        Create user
-      </Button>
+      
     </View>
   );
 };

@@ -84,14 +84,7 @@ const TaskScreen = ({ route, navigation }) => {
         ))}
       </ScrollView>
       {/* Navigate to ProfileScreen */}
-      <Button
-        mode="contained"
-        onPress={() => navigation.navigate('Profile', { user: user })}
-        style={styles.button}
-        labelStyle={styles.buttonLabel}
-      >
-        Go to Profile
-      </Button>
+      
       {/* Navigate to CreateTaskScreen */}
       <Button
         mode="contained"

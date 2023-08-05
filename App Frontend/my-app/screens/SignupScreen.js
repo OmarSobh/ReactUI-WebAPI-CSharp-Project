@@ -1,7 +1,6 @@
-import { Icon, Input, Pressable } from 'native-base';
+import { Icon, Input, Pressable, Button as NativeBaseButton, Text } from 'native-base';
 import React, { useState } from 'react';
-import { View, Button, StyleSheet, Alert, Image } from 'react-native';
-import { Text } from 'react-native-paper';
+import { View, StyleSheet, Alert, Image } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const logoImage = require('../assets/app-logo.png'); // Update the image path accordingly
@@ -55,73 +54,86 @@ const SignUpScreen = ({ navigation }) => {
       <Text style={styles.welcomeText}>Sign Up Screen</Text>
       <Image source={logoImage} style={styles.logo} resizeMode="contain" />
 
+      <Text style={styles.welcomeText}>Hi, Welcome to Sign Up! 👋</Text>
+
       <Input
         w={{
-          base: "75%",
-          md: "25%"
+          base: '75%',
+          md: '25%',
         }}
-        h={12} // Adjust the height to make the input bigger
-        mb={4} // Add margin at the bottom to create a gap between inputs
+        h={12}
+        mb={4}
         InputLeftElement={
-          <Icon as={<MaterialIcons name="person" />}
-          size={5} ml="2" color="muted.400"
-          />}
+          <Icon as={<MaterialIcons name="person" />} size={5} ml="2" color="muted.400" />
+        }
         placeholder="Name"
         onChangeText={(text) => setName(text)}
       />
 
       <Input
         w={{
-          base: "75%",
-          md: "25%"
+          base: '75%',
+          md: '25%',
         }}
-        h={12} // Adjust the height to make the input bigger
-        mb={4} // Add margin at the bottom to create a gap between inputs
+        h={12}
+        mb={4}
         InputLeftElement={
-          <Icon as={<MaterialIcons name="person" />}
-          size={5} ml="2" color="muted.400"
-          />}
+          <Icon as={<MaterialIcons name="person" />} size={5} ml="2" color="muted.400" />
+        }
         placeholder="Family"
         onChangeText={(text) => setFamily(text)}
       />
 
       <Input
         w={{
-          base: "75%",
-          md: "25%"
+          base: '75%',
+          md: '25%',
         }}
-        h={12} // Adjust the height to make the input bigger
-        mb={4} // Add margin at the bottom to create a gap between inputs
+        h={12}
+        mb={4}
         InputLeftElement={
-          <Icon as={<MaterialIcons name="mail" />}
-          size={5} ml="2" color="muted.400"
-          />}
+          <Icon as={<MaterialIcons name="mail" />} size={5} ml="2" color="muted.400" />
+        }
         placeholder="Email"
         onChangeText={(text) => setEmail(text)}
       />
 
       <Input
         w={{
-          base: "75%",
-          md: "25%"
+          base: '75%',
+          md: '25%',
         }}
-        h={12} // Adjust the height to make the input bigger
-        mb={4} // Add margin at the bottom to create a gap between inputs
+        h={12}
+        mb={4}
         InputRightElement={
           <Pressable onPress={() => setShow(!show)}>
-            <Icon as={<MaterialIcons name={show ? "visibility" : "visibility-off"} />}
-            size={5} mr="2" color="muted.400"
+            <Icon
+              as={<MaterialIcons name={show ? 'visibility' : 'visibility-off'} />}
+              size={5}
+              mr="2"
+              color="muted.400"
             />
           </Pressable>
         }
         placeholder="Password"
         onChangeText={(text) => setPassword(text)}
-        type={show ? "text" : "password"}
+        type={show ? 'text' : 'password'}
       />
 
-      <Button title="Sign Up" onPress={handleSignUp} />
+      {/* Sign Up Button */}
+      <NativeBaseButton style={styles.signUpButton} onPress={handleSignUp}>
+        Sign Up
+      </NativeBaseButton>
+
       <Text style={styles.linkText}>Already have an account?</Text>
-      <Button title="Sign In" onPress={() => navigation.navigate('Login')} />
+
+      {/* Sign In Button */}
+      <NativeBaseButton
+        style={styles.signInButton}
+        onPress={() => navigation.navigate('Login')}
+      >
+        Sign In
+      </NativeBaseButton>
     </View>
   );
 };
@@ -142,6 +154,23 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     marginBottom: 10,
+  },
+  signUpButton: {
+    width: '75%',
+    height: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'green', // Customize the button color
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  signInButton: {
+    width: '75%',
+    height: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'blue', // Customize the button color
+    borderRadius: 8,
   },
   linkText: {
     marginTop: 10,
