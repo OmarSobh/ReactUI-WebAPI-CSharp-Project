@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { Button } from 'react-native-paper';
 import CustomHeader from '../Components/CustomHeader ';
 
@@ -40,7 +40,28 @@ const TaskDetailsScreen = ({ route, navigation }) => {
       });
   };
 
+  
   const handleDeleteTask = () => {
+    // Show an alert before deleting the task
+    Alert.alert(
+      'Delete Task',
+      'Are you sure you want to delete this task?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: () => deleteTask(),
+        },
+      ],
+      { cancelable: true }
+    );
+  };
+
+  const deleteTask = () => {
     // Perform API call to delete the task
     fetch(`https://omarsobh.bsite.net/api/tasks/${task.ID}`, {
       method: 'DELETE',

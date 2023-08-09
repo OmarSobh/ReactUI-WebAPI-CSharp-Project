@@ -35,8 +35,6 @@ const App = () => {
             <Stack.Screen name="LunchLoggedIn" component={LunchScreenLoggedIn} />
             <Stack.Screen name="Admin" component={Admin} />
             <Stack.Screen name="UserDetails" component={UserDetails} />
-
-
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>

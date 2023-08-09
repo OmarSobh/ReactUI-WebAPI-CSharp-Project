@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { Button } from 'react-native-paper';
 import CustomHeader from '../Components/CustomHeader ';
 
@@ -7,12 +7,10 @@ const TaskScreen = ({ route, navigation }) => {
   const { user } = route.params;
   const [tasks, setTasks] = useState([]);
 
-  // Fetch tasks for the user
   useEffect(() => {
     fetchTasks();
   }, []);
 
-  // Fetch tasks again whenever the component receives focus
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       fetchTasks();
@@ -32,18 +30,69 @@ const TaskScreen = ({ route, navigation }) => {
       .then((data) => setTasks(data))
       .catch((error) => {
         console.error('Error:', error);
-        // Handle error if necessary
       });
   };
 
-  const handleDeleteTask = (taskId) => {
-    // Perform API call to delete the task
+  const handleCompleteTask = (taskId) => {
+    Alert.alert(
+      'Complete Task',
+      'Are you sure you want to mark this task as completed?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Complete',
+          style: 'destructive',
+          onPress: () => completeTask(taskId),
+        },
+      ],
+      { cancelable: true }
+    );
+  };
+
+  const completeTask = (taskId) => {
     fetch(`https://omarsobh.bsite.net/api/tasks/${taskId}`, {
       method: 'DELETE',
     })
       .then((response) => {
         if (response.ok) {
-          // Refresh the task list after successful deletion
+          fetchTasks();
+        } else {
+          throw new Error('Failed to complete task.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
+  const handleDeleteTask = (taskId) => {
+    Alert.alert(
+      'Delete Task',
+      'Are you sure you want to delete this task?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: () => deleteTask(taskId),
+        },
+      ],
+      { cancelable: true }
+    );
+  };
+
+  const deleteTask = (taskId) => {
+    fetch(`https://omarsobh.bsite.net/api/tasks/${taskId}`, {
+      method: 'DELETE',
+    })
+      .then((response) => {
+        if (response.ok) {
           fetchTasks();
         } else {
           throw new Error('Failed to delete task.');
@@ -51,7 +100,6 @@ const TaskScreen = ({ route, navigation }) => {
       })
       .catch((error) => {
         console.error('Error:', error);
-        // Handle error if necessary, e.g., show an error message to the user
       });
   };
 
@@ -71,21 +119,18 @@ const TaskScreen = ({ route, navigation }) => {
               <Text style={styles.taskTitle}>{task.Title}</Text>
               <Text style={styles.taskDescription}>{task.Description}</Text>
             </View>
-            {/* Delete Button */}
+            
             <Button
-              mode="outlined"
-              onPress={() => handleDeleteTask(task.ID)}
-              style={styles.deleteButton}
-              labelStyle={styles.deleteButtonLabel}
+              mode="contained"
+              onPress={() => handleCompleteTask(task.ID)}
+              style={styles.completeButton}
+              labelStyle={styles.completeButtonLabel}
             >
-              Delete
+              Complete
             </Button>
           </TouchableOpacity>
         ))}
       </ScrollView>
-      {/* Navigate to ProfileScreen */}
-      
-      {/* Navigate to CreateTaskScreen */}
       <Button
         mode="contained"
         onPress={() => navigation.navigate('CreateTask', { user })}
@@ -146,9 +191,20 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: '#dc3545',
     borderWidth: 1,
+    marginRight: 5,
   },
   deleteButtonLabel: {
     color: '#dc3545',
+  },
+  completeButton: {
+    paddingVertical: 2,
+    paddingHorizontal: 5,
+    borderRadius: 5,
+    backgroundColor: 'green',
+    marginRight: 5,
+  },
+  completeButtonLabel: {
+    color: '#fff',
   },
 });
 
