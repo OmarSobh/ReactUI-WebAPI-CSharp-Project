@@ -37,8 +37,8 @@ const SignUpScreen = ({ navigation }) => {
     })
       .then((response) => {
         if (response.ok) {
-          Alert.alert('Sign Up Successful');
-          navigation.navigate('Tasks', { user: data });
+          Alert.alert('Sign Up Succesful , You Can Login Now!');
+          navigation.navigate('Login');
         } else {
           Alert.alert('Sign Up Failed', 'Unable to sign up. Please try again later.');
         }
