@@ -1,6 +1,9 @@
 # React Native Warehouse Tasks Manager
 
-![Project Logo](logo.png)
+<p align="center">
+  <img src="App Frontend/my-app/assets/app-logo.png" alt="App Logo" width="200" height="250">
+</p>
+
 
 Welcome to the React Native Warehouse Tasks Manager project! This mobile application aims to assist warehouse managers in efficiently managing daily tasks for each worker. The project integrates a backend created using C# ASP.NET hosted on FreeASPHosting, along with a SQL database for data storage. The app's UI is styled using NativeBase and custom CSS.
 
